@@ -1,6 +1,6 @@
 module github.com/maximp14/golangreact
 
-go 1.14.2
+go 1.12
 
 require (
 
