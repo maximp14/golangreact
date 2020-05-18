@@ -13,5 +13,4 @@ func CheckDB(next http.HandlerFunc) http.HandlerFunc {
 		}
 		next.ServeHTTP(writer, request)
 	}
-
 }

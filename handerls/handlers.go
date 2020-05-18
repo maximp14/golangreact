@@ -2,8 +2,9 @@ package handerls
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/rs/cors"
 	"github.com/maximp14/golangreact/middlew"
+	"github.com/maximp14/golangreact/routers"
+	"github.com/rs/cors"
 	"log"
 	"net/http"
 	"os"
@@ -12,7 +13,8 @@ import (
 func Handlers() {
 	router := mux.NewRouter()
 
-	router.HandleFunc("/register", middlew.CheckDB(routers.register)).Methods("POST")
+	//	router.HandleFunc("/registro", middlew.ChequeoBD(routers.Registro)).Methods("POST")
+	router.HandleFunc("/register", middlew.CheckDB(routers.Register)).Methods("POST")
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {

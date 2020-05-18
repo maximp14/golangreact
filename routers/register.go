@@ -7,9 +7,9 @@ import (
 	"github.com/maximp14/golangreact/models"
 )
 
-func Register(writer http.ResponseWriter, response *http.Response) {
+func Register(writer http.ResponseWriter, request *http.Request) {
 	var u models.User
-	err := json.NewDecoder(response.Body).Decode(&u)
+	err := json.NewDecoder(request.Body).Decode(&u)
 	if err != nil {
 		http.Error(writer, "Data error"+err.Error(), 400)
 		return
