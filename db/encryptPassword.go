@@ -1,7 +1,6 @@
 package db
 
-import 	"golang.org/x/crypto/bcrypt"
-
+import "golang.org/x/crypto/bcrypt"
 
 func EncryptPassword(pass string) (string, error) {
 	cost := 8
