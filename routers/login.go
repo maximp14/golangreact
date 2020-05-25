@@ -14,7 +14,7 @@ func Login(writer http.ResponseWriter, request *http.Request) {
 
 	var t models.User
 
-	err:=json.NewDecoder(request.Body).Decode(&t)
+	err := json.NewDecoder(request.Body).Decode(&t)
 	if err != nil {
 		http.Error(writer, "User or Password invalid"+err.Error(), 400)
 		return
@@ -41,16 +41,15 @@ func Login(writer http.ResponseWriter, request *http.Request) {
 		Token: jwtKey,
 	}
 
-	writer.Header().Set("Content-type", "application/json")
+	writer.Header().Set("Content-Type", "application/json")
 	writer.WriteHeader(http.StatusCreated)
 	json.NewEncoder(writer).Encode(resp)
 
 	expirationTime := time.Now().Add(24 * time.Hour)
 	http.SetCookie(writer, &http.Cookie{
-		Name: "token",
-		Value: jwtKey,
+		Name:    "token",
+		Value:   jwtKey,
 		Expires: expirationTime,
 	})
-
 
 }

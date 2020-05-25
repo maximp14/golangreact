@@ -16,6 +16,15 @@ func Handlers() {
 	router.HandleFunc("/register", middlew.CheckDB(routers.Register)).Methods("POST")
 	router.HandleFunc("/login", middlew.CheckDB(routers.Login)).Methods("POST")
 	router.HandleFunc("/profile", middlew.CheckDB(middlew.JWTValidation(routers.LookProfile))).Methods("GET")
+	router.HandleFunc("/editProfile", middlew.CheckDB(middlew.JWTValidation(routers.EditProfile))).Methods("PUT")
+	router.HandleFunc("/tweet", middlew.CheckDB(middlew.JWTValidation(routers.TweetPersist))).Methods("POST")
+	router.HandleFunc("/readTweets", middlew.CheckDB(middlew.JWTValidation(routers.ReadTweets))).Methods("GET")
+	router.HandleFunc("/deleteTweet", middlew.CheckDB(middlew.JWTValidation(routers.DeleteTweet))).Methods("DELETE")
+
+	router.HandleFunc("/uploadAvatar", middlew.CheckDB(middlew.JWTValidation(routers.UploadAvatar))).Methods("POST")
+	router.HandleFunc("/downloadAvatar", middlew.CheckDB(routers.DownloadAvatar)).Methods("GET")
+	router.HandleFunc("/uploadBanner", middlew.CheckDB(middlew.JWTValidation(routers.UploadBanner))).Methods("POST")
+	router.HandleFunc("/downloadBanner", middlew.CheckDB(routers.DownloadBanner)).Methods("GET")
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
@@ -23,7 +32,6 @@ func Handlers() {
 	}
 	handler := cors.AllowAll().Handler(router)
 
-	log.Fatal(http.ListenAndServe(":"+PORT,handler))
-
+	log.Fatal(http.ListenAndServe(":"+PORT, handler))
 
 }

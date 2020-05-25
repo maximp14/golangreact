@@ -14,7 +14,7 @@ func InsertUser(u models.User) (string, bool, error) {
 	db := MongoConnect.Database("maxdev")
 	collection := db.Collection("users")
 
-	u.Password,_ = EncryptPassword(u.Password)
+	u.Password, _ = EncryptPassword(u.Password)
 
 	result, err := collection.InsertOne(ctx, u)
 

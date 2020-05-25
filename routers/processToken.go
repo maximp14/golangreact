@@ -2,10 +2,10 @@ package routers
 
 import (
 	"errors"
-	"strings"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/maximp14/golangreact/db"
 	"github.com/maximp14/golangreact/models"
+	"strings"
 )
 
 var Email string
@@ -26,7 +26,7 @@ func ProcessToken(token string) (*models.Claim, bool, string, error) {
 	tkn, err := jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error) {
 		return myKey, nil
 	})
-	if err == nil{
+	if err == nil {
 		_, found, _ := db.UserExist(claims.Email)
 		if found == true {
 			Email = claims.Email

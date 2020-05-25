@@ -3,10 +3,10 @@ package db
 import (
 	"context"
 	"fmt"
-	"time"
 	"github.com/maximp14/golangreact/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"time"
 )
 
 func SearchProfile(ID string) (models.User, error) {
@@ -26,7 +26,7 @@ func SearchProfile(ID string) (models.User, error) {
 	err := collection.FindOne(ctx, condition).Decode(&profile)
 	profile.Password = ""
 	if err != nil {
-		fmt.Println("Profile not found"+err.Error())
+		fmt.Println("Profile not found" + err.Error())
 		return profile, err
 	}
 	return profile, nil

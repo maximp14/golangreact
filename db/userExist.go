@@ -15,11 +15,11 @@ func UserExist(email string) (models.User, bool, string) {
 	db := MongoConnect.Database("maxdev")
 	collection := db.Collection("users")
 
-	condition := bson.M{"email":email}
+	condition := bson.M{"email": email}
 
 	var result models.User
 
-	err:= collection.FindOne(ctx, condition).Decode(&result)
+	err := collection.FindOne(ctx, condition).Decode(&result)
 
 	ID := result.ID.Hex()
 
@@ -29,5 +29,3 @@ func UserExist(email string) (models.User, bool, string) {
 
 	return result, true, ID
 }
-
-
